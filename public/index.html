@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DApp</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <main class="card">
+    <h1>VISAT / Counter</h1>
+
+    <div class="row">
+      <button id="connectBtn">Подключить MetaMask</button>
+      <div class="muted">
+        <div>Account: <span id="account">—</span></div>
+        <div>Network: <span id="network">—</span></div>
+      </div>
+    </div>
+
+    <section class="box">
+      <h2>Counter</h2>
+      <div class="row">
+        <button id="counterReadBtn">Прочитать x</button>
+        <span class="pill">x = <span id="counterX">—</span></span>
+      </div>
+
+      <div class="row">
+        <button id="counterIncBtn">inc()</button>
+
+        <input id="counterIncByInput" type="number" min="1" value="5" />
+        <button id="counterIncByBtn">incBy()</button>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>VISAT (ERC20)</h2>
+
+      <div class="row">
+        <button id="visatBalanceBtn">Мой баланс</button>
+        <span class="pill">balance = <span id="visatBalance">—</span></span>
+      </div>
+
+      <div class="row">
+        <input id="visatTo" placeholder="0x получатель" />
+        <input id="visatAmount" type="number" min="0" placeholder="сумма" />
+        <button id="visatTransferBtn">transfer</button>
+      </div>
+    </section>
+
+    <p id="status" class="status">—</p>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
