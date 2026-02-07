@@ -87,20 +87,19 @@ contract VisaCrowdfunding {
         campaignCount++;
     }
 
-    function buyVisa(uint256 campaignId) external payable {
-        Campaign storage campaign = campaigns[campaignId];
+    
+function buyVisa(uint256 campaignId) external payable {
+    Campaign storage campaign = campaigns[campaignId];
+    
+    campaign.raised += msg.value;
+    contributions[campaignId][msg.sender] += msg.value;
 
-        require(block.timestamp < campaign.deadline, "Campaign ended");
-        require(msg.value > 0, "Send ETH");
-        require(!campaign.finalized, "Campaign finalized");
+    // Расчет: 10 токенов за каждый 1 ETH (или wei)
+    uint256 rewardAmount = msg.value * 10; 
+    visatToken.mint(msg.sender, rewardAmount);
 
-        campaign.raised += msg.value;
-        contributions[campaignId][msg.sender] += msg.value;
-
-        visatToken.mint(msg.sender, visatPerETH);
-
-        emit VisaPurchased(campaignId, msg.sender, msg.value, visatPerETH);
-    }
+    emit VisaPurchased(campaignId, msg.sender, msg.value, rewardAmount);
+}
 
     function finalizeCampaign(uint256 campaignId) external {
         Campaign storage campaign = campaigns[campaignId];
