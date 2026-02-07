@@ -14,7 +14,7 @@ contract VISAT is ERC20, Ownable {
         crowdfundingContract = _cf;
     }
 
-    function mint(address to, uint256 amount) external onlyOwner {
+    function mint(address to, uint256 amount) external {
         require(msg.sender == crowdfundingContract, "Not allowed");
         _mint(to, amount);
     }
@@ -31,7 +31,7 @@ contract VisaCrowdfunding {
     }
 
     VISAT public visatToken;
-    uint256 visatPerETH = msg.value * 10;
+    uint256 visatPerETH = 10;
 
     uint256 public campaignCount;
 
@@ -97,7 +97,7 @@ contract VisaCrowdfunding {
         campaign.raised += msg.value;
         contributions[campaignId][msg.sender] += msg.value;
 
-        visatToken.mint(msg.sender, visatPerETH);
+        visatToken.mint(msg.sender, msg.value * visatPerETH);
 
         emit VisaPurchased(campaignId, msg.sender, msg.value, visatPerETH);
     }

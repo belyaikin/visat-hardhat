@@ -3,44 +3,27 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DApp</title>
+  <title>Visa Crowdfunding Platform</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <main class="card">
-    <h1>VISAT / Counter</h1>
+  <main class="card">
+    <h1>Visa Crowdfunding Platform</h1>
 
     <div class="row">
       <button id="connectBtn">Подключить MetaMask</button>
       <div class="muted">
-        <div>Account: <span id="account">—</span></div>
-        <div>Network: <span id="network">—</span></div>
+        <div>Аккаунт: <span id="account">—</span></div>
+        <div>Сеть: <span id="network">—</span></div>
       </div>
     </div>
 
     <section class="box">
-      <h2>Counter</h2>
-      <div class="row">
-        <button id="counterReadBtn">Прочитать x</button>
-        <span class="pill">x = <span id="counterX">—</span></span>
-      </div>
-
-      <div class="row">
-        <button id="counterIncBtn">inc()</button>
-
-        <input id="counterIncByInput" type="number" min="1" value="5" />
-        <button id="counterIncByBtn">incBy()</button>
-      </div>
-    </section>
-
-    <section class="box">
-      <h2>VISAT (ERC20)</h2>
-
+      <h2>VISAT</h2>
       <div class="row">
         <button id="visatBalanceBtn">Мой баланс</button>
         <span class="pill">balance = <span id="visatBalance">—</span></span>
       </div>
-
       <div class="row">
         <input id="visatTo" placeholder="0x получатель" />
         <input id="visatAmount" type="number" min="0" placeholder="сумма" />
@@ -48,10 +31,37 @@
       </div>
     </section>
 
+    <section class="box">
+      <h2>Кампании</h2>
+      <div class="row">
+        <input id="campaignCountry" placeholder="Страна" />
+        <input id="campaignGoal" type="number" placeholder="ETH цель" />
+        <input id="campaignDuration" type="number" placeholder="Длительность (сек)" />
+        <button id="createCampaignBtn">Создать кампанию</button>
+      </div>
+
+      <div class="row">
+        <input id="buyCampaignId" type="number" placeholder="ID кампании" />
+        <input id="buyAmount" type="number" placeholder="ETH сумма" />
+        <button id="buyVisaBtn">Купить визу</button>
+      </div>
+
+      <div class="row">
+        <input id="checkCampaignId" type="number" placeholder="ID кампании" />
+        <input id="checkVisaAddr" placeholder="Адрес (опционально)" />
+        <button id="checkVisaBtn">Проверить визу</button>
+      </div>
+
+      <div class="row">
+        <input id="finalizeCampaignId" type="number" placeholder="ID кампании" />
+        <button id="finalizeCampaignBtn">Финализировать кампанию</button>
+      </div>
+    </section>
+
     <p id="status" class="status">—</p>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
-  <script src="./app.js"></script>
+  <script type="module" src="./app.js"></script>
 </body>
 </html>
